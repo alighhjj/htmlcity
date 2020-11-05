@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>天气查询</title>
+	</head>
+	<body>
+		<h1>全国天气预报查询</h1>
+		<button type="button" onclick="loadXMLDoc()">访问百度</button>
+		<p>在下面输入框中输入城市的中文或者拼音进行查询</p>
+		<input id="text1" type="text" value="beijing">
+		<input type="button" name="weather" id="btn1" value="查询" onclick="getweather()" />
+		<!--<button id="btn" type="button" value="beijing" onclick="getweather()">天气查询</button>-->
+		<br><br>
+		<div id="testdiv1">
+		</div>
+		<div id="testdiv2">
+		</div>
+		<script type="text/javascript">
+			var loct;
+			//var url = "https://api.seniverse.com/v3/weather/daily.json?key=SgoDmOUPKJOt-BT0f&location=" + loct + "&language=zh-Hans&unit=c&start=0&days=5";
+			var url;
+			function getweather() {
+				//获取输入框的城市名称
+				loct = document.getElementById("text1").value;
+				url = "https://api.seniverse.com/v3/weather/daily.json?key=SgoDmOUPKJOt-BT0f&location=" + loct +
+					"&language=zh-Hans&unit=c&start=0&days=5";
+				//url = "https://www.baidu.com";
+				// open(url);
+				var test = document.getElementById("testdiv1");
+				test.innerHTML = '<iframe src="' + url + '" width="" height=""></iframe>';
+				//注意变量的引用方式"+变量+",如果在引号包围内,需要注意引号单/双/单交错书写的规则
+			}
+
+			function loadXMLDoc() {
+				var xmlhttp;
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET","https://www.baidu.com",true);
+				xmlhttp.send();
+				document.getElementById("testdiv2").innerHTML = xmlhttp.responseText;
+				alert("ok")
+			}
+		</script>
+	</body>
+</html>
